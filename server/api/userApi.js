@@ -58,6 +58,17 @@ router.get('/comments', (req, res) => {
     })
 });
 
+router.get('/notes', (req, res) => {
+    conn.query('select * from bj_huangshan', function (err, row) {
+        if (err) {
+            console.log(err)
+        }
+        console.log(typeof row)
+        let data = JSON.stringify(row)
+        res.end(data)
+    })
+});
+
 // router.get('/query1',(req,res)=>{
 //     conn.query('select * from user1',function(err,row){
 //         if(err){
