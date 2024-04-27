@@ -47,6 +47,23 @@ router.get('/query', (req, res) => {
     })
 });
 
+router.get('/PolygonSelect', (req, res) => {
+    //从前端请求中获取参数
+    const parameter = req.query.parameter;
+    //处理得到的字符串，书写正确的sql语句
+    const parameterString = "'" + parameter.join("','") + "'";
+    const sqlQuery = `SELECT * FROM parks WHERE NAME IN (${parameterString})`;
+    conn.query(sqlQuery, function (err, row) {
+        if (err) {
+            console.log(err)
+        }
+        console.log(typeof row)
+        let data = JSON.stringify(row)
+        console.log(data)
+        res.end(data)
+    })
+});
+
 router.get('/comments', (req, res) => {
     conn.query('select * from huangshan2', function (err, row) {
         if (err) {
