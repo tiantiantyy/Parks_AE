@@ -63,7 +63,7 @@ router.get('/PolygonSelect', (req, res) => {
     const parameter = req.query.parameter;
     //处理得到的字符串，书写正确的sql语句
     const parameterString = "'" + parameter.join("','") + "'";
-    const sqlQuery = `SELECT * FROM parks WHERE NAME IN (${parameterString})`;
+    const sqlQuery = `SELECT * FROM parksdetails WHERE NAME IN (${parameterString})`;
     conn.query(sqlQuery, function (err, row) {
         if (err) {
             console.log(err)
