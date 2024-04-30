@@ -37,7 +37,18 @@ var jsonWrite = function (res, ret) {
 // });
 
 router.get('/query', (req, res) => {
-    conn.query('select * from parks', function (err, row) {
+    conn.query('select * from parksdetails', function (err, row) {
+        if (err) {
+            console.log(err)
+        }
+        console.log(typeof row)
+        let data = JSON.stringify(row)
+        res.end(data)
+    })
+});
+
+router.get('/queryRank', (req, res) => {
+    conn.query('select * from parksdetails ORDER BY AREA DESC', function (err, row) {
         if (err) {
             console.log(err)
         }
