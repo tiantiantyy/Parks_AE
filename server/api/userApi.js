@@ -90,6 +90,23 @@ router.get('/PointSelect', (req, res) => {
     })
 });
 
+router.get('/ProvinceSelect', (req, res) => {
+    //从前端请求中获取参数
+
+    const parameter = req.query.parameter;
+    console.log("parameter", parameter)
+    const sqlQuery = `SELECT * FROM parksdetails WHERE PROVINCE='${parameter}'`;
+    conn.query(sqlQuery, function (err, row) {
+        if (err) {
+            console.log(err)
+        }
+        console.log(typeof row)
+        let data = JSON.stringify(row)
+        console.log(data)
+        res.end(data)
+    })
+});
+
 router.get('/comments', (req, res) => {
     conn.query('select * from huangshan2', function (err, row) {
         if (err) {
