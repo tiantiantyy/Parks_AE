@@ -130,7 +130,10 @@ router.get('/comments', (req, res) => {
 });
 
 router.get('/notes', (req, res) => {
-    conn.query('select * from bj_huangshan', function (err, row) {
+    const parameter = req.query.parameter;
+    console.log("parameter", parameter)
+    const final = "`" + `${parameter}` + "`"
+    conn.query(`select * from ${final}`, function (err, row) {
         if (err) {
             console.log(err)
         }
