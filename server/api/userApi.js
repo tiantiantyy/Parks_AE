@@ -140,6 +140,8 @@ router.get('/notes', (req, res) => {
     })
 });
 
+
+
 // router.get('/query1',(req,res)=>{
 //     conn.query('select * from user1',function(err,row){
 //         if(err){
