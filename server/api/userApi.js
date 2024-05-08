@@ -129,6 +129,17 @@ router.get('/comments', (req, res) => {
     })
 });
 
+router.get('/notesDetails', (req, res) => {
+    conn.query('select * from`黄山世界地质公园`', function (err, row) {
+        if (err) {
+            console.log(err)
+        }
+        console.log(typeof row)
+        let data = JSON.stringify(row)
+        res.end(data)
+    })
+});
+
 router.get('/notes', (req, res) => {
     const parameter = req.query.parameter;
     console.log("parameter", parameter)
